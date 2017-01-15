@@ -1,26 +1,6 @@
-
-
-void edip240_fill_area(uint8_t x1, uint8_t y1, uint8_t x2, uint8_t y2) {
-  uint8_t buff[18]  = {0};
-
-  //format command
-  sprintf(buff, "#RS%d,%d,%d,%d", x1, y1, x2, y2);
-  //send command
-  edip240_send(buff);
-  edip240_send("#TA");
-}
-
-
 /*
- * loop throw *data and update the display
+ * draw/delete cell on display @x,y 
  */
-void edip240_update_world(uint8_t *data) {
-  uint8_t x;
-  uint8_t y;
-
-  
-}
-
 void edip240_draw_cell(uint8_t x, uint8_t y, uint8_t state) {
   uint8_t buff[18]  = {0};
 
@@ -33,7 +13,9 @@ void edip240_draw_cell(uint8_t x, uint8_t y, uint8_t state) {
   edip240_send(buff);
   edip240_send("#TA");
 }
-
+/*
+ * low level function to send ASCII data to display
+ */
 void edip240_send(const uint8_t *data) {
 
   uint8_t len, bcc, i, ans;
